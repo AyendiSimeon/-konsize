@@ -1,0 +1,31 @@
+
+{% load static %}
+
+
+
+<section class='main bg-light'>
+    <div class='container'>
+      <nav class="navbar navbar-expand-sm navbar-light text-dark">
+          <div class='brand'>
+            <p class='brand'><a class="navbar-brand" href="{% url 'homeview' %}">Konsize</a></p>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse justify-content-end" id="navbarsExample03">
+            <ul class="navbar-nav mr-auto p-2">
+              {% for c in cat %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ c.get_absolute_url }}">{{ c.title }}</a>
+              </li>
+              {% endfor %}
+              <li class="nav-item dropdown">
+               <button class='btn btn-primary' href='#'>Subscribe</button>
+              </li>
+            </ul>
+          </div>
+      </nav>
+  </div> 
+</section>
+

@@ -1,0 +1,82 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class='container'>
+    <div class='row'>
+      <h3 class='card-title '>{{ post.title }}</h3>
+      <p>By: {{ post.author }}</p>
+      <p>{{ post.date }}</p>
+        <div class='col-sm-8 col-md-8'>
+            <div class='card'>
+                <img class='img-top' src="{{ post.image.url}}">
+                <div class='card-body'>
+                    
+                    <p class='card-text'>{{ post.body }}</p>
+                      <hr>
+                      
+                      <div class='icons d-flex px-3 pt-3'>
+                        <p>Tags:</p>
+                      <p class='px-3'><i class='fa fa-folder'></i> Business</p> 
+                      <p><i class='fab fa-youtube'></i> Youtube</p>
+                      </div>
+                  </div>
+            </div>
+
+        </div>
+        
+         <div class='col-sm-4 py-2 sidebar'>
+        <div class='sidebar-content py-4 px-3'>
+        <h4 class='display-8'>Search</h4>
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-secondary">Search</button>
+            </div>
+          </div>
+        </form>
+          <br>
+          
+          <h5 class='display-8'>Recent Posts</h5>
+          {% for p in posts %}
+         <div class='post-item d-flex'>
+           <img class='flex-shrink-0' src="{{ p.image.url }}" width='100px'>
+           <div class='items'>
+           <a href='{{ p.get_absolute_url }}' class='link'>{{ p.title }}</a><br>
+           <p><i class='fa fa-clock bg-light'></i> {{ p.date }}</p>
+           </div>
+         </div>
+         <br>
+         {% endfor %}
+         
+         
+
+        <h5 class='display-8'>Tags</h5>
+        <div class='tags '>
+          {% for p in posts %}
+          <button class='btn btn-outline-secondary mb-3'>{{ p.tags }}</button>
+          {% endfor %}
+         
+        </div>
+      </div>
+</div>
+
+  
+</section>
+</div>
+{% for com in post.comments.all  %}
+<p>{{ com.name }}</p>
+<p>{{ com.body }}</p>
+{% endfor %}
+
+
+
+<h4>Next Up in business</h4>
+</div>
+
+
+
+<br>
+{% endblock %}

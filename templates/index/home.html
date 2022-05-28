@@ -1,0 +1,168 @@
+
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12  py-4 ">
+          <div class="image">
+              <img src="{% static 'img/main.jpg' %} " alt="" class='img'>
+              <div class="overlay">
+                  
+                  <p class="h4">Edutech startup Learning recieves 7 billion dollars in funding </p>
+                  <p class="textmuted">Ameeru Ahmed magu male,female</p>
+                  
+              </div>
+          </div>
+      </div>
+      
+      </div>
+  </div>
+
+
+<div class='container'>
+  <div class='row py-2'>
+    <h3>Trending </h3>
+    <!--
+    <div class='col'>
+      <div class='overlay overlay-intensity-lg has-bg-img rounded'>
+        <div class='overlay-content'>Tech Gaints Konsize becomes a 70 triilion dollar worth company</div>
+        <img class='img-fluid' src="{% static 'img/main.jpg' %}   " >
+      </div>
+     -->   
+      
+    </div>
+    
+    <div class='row'>
+      <hr>
+           
+      {% for a in active %}
+      <div class='col-md-6'>  
+        <div class='post-item d-flex'>
+          <img class='flex-shrink-0' src="{{ a.image.url }}" width='120px'>
+            <div class='items'>
+               <a href='{{ a.get_absolute_url }}' class='link'>{{ a.title }}</a><br>
+                <p><i class='fa fa-clock bg-light'></i> {{ a.date }}</p>
+                <p>By: {{ a.author }}</p>
+            </div>
+        </div>
+        <br>
+      </div> 
+        <br>
+        {% endfor %}
+      <br>
+</div>
+
+<div class='container'>
+  <h4>The Latest</h4>
+  <div class='row'>
+    <div class='col-md-9'>
+      {% for p in posts %}
+      <hr>
+      <div class='post-item d-flex'>
+        <img class='flex-shrink-0' src="{{ p.image.url }}" width='150px'>
+        <div class='items'>
+        <a href='{{ p.get_absolute_url }}' class='link'>{{ p.title }}</a>
+        <p><i class='fa fa-clock bg-light'></i> {{ p.date }}</p>
+        <p>By: {{ p.author }}</p>
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-9'>
+      <h3>Insight</h3>
+    </div>
+  </div>
+
+<!--
+<section class='body'>
+  <div class='container'>
+    <div class='row g-9'>
+      <div class='col-sm-8'>
+          <div class='row'>
+            {% for p in post  %}
+            <div class='col-sm-6'>
+              
+        <div class='card'>
+          <img class='img-fluid-top' src="{{ p.image.url }}">
+          <div class='card-body'>
+          <a href='#'><h5 class='card-title'>{{ p.title }}</h5></a>
+          <div class='icons d-flex'>
+             <p class='px-2'> <i class='fa fa-user'></i> {{ p.author }}</p>
+             
+              <p><i class='fa fa-comment'></i>12 Comments</p>
+          </div>
+          <p class='card-text'>{{ p.body|slice:50 }}...</p>
+          <a class='btn btn-secondary justify-content-end' href='{{ p.get_absolute_url }}'>Read More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  
+  </div>
+  
+      
+    </div>
+      <div class='col-sm-4 py-2 sidebar'>
+        <div class='sidebar-content py-4 px-3'>
+        
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-secondary">Search</button>
+            </div>
+          </div>
+        </form>
+          <br>
+          
+          <h5 class='display-8'>Recent Posts</h5>
+          {% for p in post %}
+         <div class='post-item d-flex'>
+           <img class='flex-shrink-0' src="{{ p.image.url }}" width='100px'>
+           <div class='items'>
+           <a href='{{ p.get_absolute_url }}' class='link'>{{ p.title }}</a><br>
+           <p><i class='fa fa-clock bg-light'></i> {{ p.date }}</p>
+           </div>
+         </div>
+         <br>
+         {% endfor %}
+         
+         
+
+        <h5 class='display-8'>Tags</h5>
+        <div class='tags '>
+          {% for p in post %}
+          <button class='btn btn-outline-secondary mb-3'>{{ p.tags }}</button>
+          {% endfor %}
+         
+        </div>
+      </div>
+      </section>
+
+
+-->
+
+{% if posts.has_previous %}
+<a href="?page=1">&laquo First</a>
+<a href="?page={{ posts.previous_page_number }}">Previous</a>
+{% endif %}
+
+Page: {{ posts.number }} of {{ posts.paginator.num_pages }}
+
+{% if  posts.has_next %}
+
+<a href="?page={{ posts.next_page_number }}">Next</a>
+Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+{% endif %}
+
+</div>
+{% endblock %}
